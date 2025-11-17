@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,9 @@ class Inventory extends Model
         "product_id",
         "stock_quantity",
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
