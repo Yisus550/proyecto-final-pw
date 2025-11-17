@@ -12,10 +12,10 @@ class Employee extends Model
     public $timestamps = false;
 
     public $fillable = [
-        "first_name",
-        "last_name",
-        "role",
-        "email",
-        "is_active"
+        'first_name',
+        'last_name',
+        'role',
+        'email',
+        'is_active',
     ];
 }
