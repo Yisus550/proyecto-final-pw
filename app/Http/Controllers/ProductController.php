@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,8 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with("category")->get();
-        return view("products.index", compact("products"));
+        $products = Product::with('category')->get();
+
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -23,9 +24,9 @@ class ProductController extends Controller
     public function create()
     {
         $categoriesInfo = Category::all();
-        $categories = $categoriesInfo->pluck("name", "id");
+        $categories = $categoriesInfo->pluck('name', 'id');
 
-        return view("products.create", compact("categories"));
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -34,14 +35,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-             "name" => "required|string|max:60",
-             "category_id" => "required|integer|exists:categories,id",
-             "unit_price" => "required|numeric|min:0",
-         ]);
-        $validated["is_active"] = $request->has("is_active");
+            'name' => 'required|string|max:60',
+            'category_id' => 'required|integer|exists:categories,id',
+            'unit_price' => 'required|numeric|min:0',
+        ]);
+        $validated['is_active'] = $request->has('is_active');
 
         Product::create($validated);
-        return redirect()->route("products.index")->with("success", "Product created successfully.");
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -50,7 +52,8 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::findOrFail($id);
-        return view("products.show", compact("product"));
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -60,9 +63,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categoriesInfo = Category::all();
-        $categories = $categoriesInfo->pluck("name", "id");
+        $categories = $categoriesInfo->pluck('name', 'id');
 
-        return view("products.edit", compact("product", "categories"));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -71,16 +74,16 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-             "name" => "required|string|max:60",
-             "category_id" => "required|integer|exists:categories,id",
-             "unit_price" => "required|numeric|min:0",
-         ]);
-        $validated["is_active"] = $request->has("is_active");
+            'name' => 'required|string|max:60',
+            'category_id' => 'required|integer|exists:categories,id',
+            'unit_price' => 'required|numeric|min:0',
+        ]);
+        $validated['is_active'] = $request->has('is_active');
 
         $product = Product::findOrFail($id);
         $product->update($validated);
 
-        return redirect()->route("products.index")->with("success", "Product updated successfully.");
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -91,6 +94,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route("products.index")->with("success", "Product deleted successfully.");
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }
