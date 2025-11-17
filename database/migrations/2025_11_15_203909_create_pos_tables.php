@@ -33,11 +33,29 @@ return new class () extends Migration {
             /* $table->timestamps(); */
         });
 
+        Schema::create("employees", function (Blueprint $table) {
+            $table->id();
+            $table->string("first_name");
+            $table->string("last_name");
+            $table->string("role");
+            $table->string("email")->unique();
+            $table->boolean("is_active")->default(true);
+        });
+
+        Schema::create("customers", function (Blueprint $table) {
+            $table->id();
+            $table->string("first_name");
+            $table->string("last_name");
+            $table->string("email")->unique();
+            $table->string("phone_number")->nullable();
+            $table->boolean("is_active")->default(true);
+        });
+
         Schema::create("orders", function (Blueprint $table) {
             $table->id();
             // TODO: Add employee_id and customer_id foreign keys when those tables are created
-            /* $table->foreignId("employee_id")->constrained("employees")->onDelete("cascade");
-            $table->foreignId("customer_id")->constrained("customers")->onDelete("cascade"); */
+            $table->foreignId("employee_id")->constrained("employees")->onDelete("cascade");
+            $table->foreignId("customer_id")->constrained("customers")->onDelete("cascade");
             $table->dateTime("order_date");
             $table->decimal("total_amount", 10, 2);
             $table->string("payment_method");
@@ -60,10 +78,12 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('orders');
         Schema::dropIfExists('order_details');
         Schema::dropIfExists('inventories');
+        Schema::dropIfExists('employees');
+        Schema::dropIfExists('customers');
+        Schema::dropIfExists('products');
+        Schema::dropIfExists('orders');
         Schema::dropIfExists('categories');
     }
 };

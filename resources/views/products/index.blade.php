@@ -28,7 +28,7 @@
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product->name }}</td>
-                        <td>{{ $product->category }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td>{{ $product->unit_price }}</td>
                         <td>{{ $product->is_active ? 'Disponible' : 'No disponible' }}</td>
                         <td>

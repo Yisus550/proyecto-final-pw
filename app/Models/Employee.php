@@ -2,23 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inventory extends Model
+class Employee extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
     public $fillable = [
-        "product_id",
-        "stock_quantity",
+        "first_name",
+        "last_name",
+        "role",
+        "email",
+        "is_active"
     ];
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
 }

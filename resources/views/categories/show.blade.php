@@ -4,22 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Details</title>
+    <title>Detalles de Categoria</title>
 </head>
 
 <body>
-    <h2>Details</h2>
+    <h2>Detalles de {{ $category->name }}</h2>
     <div>
         <strong>ID:</strong>
         {{ $category->id }}
     </div>
     <div>
-        <strong>Name:</strong>
+        <strong>Nombre:</strong>
         {{ $category->name }}
     </div>
     <div>
-        <strong>Description:</strong>
+        <strong>Descripcion:</strong>
         {{ $category->description }}
+    </div>
+
+    <div>
+        <a href="{{ route('categories.edit', $category->id) }}">Editar Categoria</a>
+        <a href="{{ route('categories.index') }}">Volver a la lista de categorias</a>
     </div>
 </body>
 
