@@ -14,7 +14,7 @@
     @if ($products->isEmpty())
         <p>No hay productos disponibles.</p>
     @else
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -37,7 +37,7 @@
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Eliminar</button>
+                                <button type="submit" onclick="return confirm('¿Estas seguro de eliminar este producto?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>

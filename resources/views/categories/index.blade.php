@@ -14,7 +14,7 @@
     @if ($categories->isEmpty())
         <p>No hay categorías disponibles.</p>
     @else
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -33,7 +33,7 @@
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Eliminar</button>
+                                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoria?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>
