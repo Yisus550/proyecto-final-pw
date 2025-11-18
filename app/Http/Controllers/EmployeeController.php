@@ -13,7 +13,8 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
-        return view("employees.index", compact("employees"));
+
+        return view('employees.index', compact('employees'));
     }
 
     /**
@@ -21,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view("employees.create");
+        return view('employees.create');
     }
 
     /**
@@ -37,6 +38,7 @@ class EmployeeController extends Controller
         ]);
 
         Employee::create($validated);
+
         return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
@@ -46,7 +48,8 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         $employee = Employee::findOrFail($id);
-        return view("employees.show", compact("employee"));
+
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -55,7 +58,8 @@ class EmployeeController extends Controller
     public function edit(string $id)
     {
         $employee = Employee::findOrFail($id);
-        return view("employees.edit", compact("employee"));
+
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -67,11 +71,12 @@ class EmployeeController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'role' => 'required|string|max:60',
-            'email' => 'required|email|unique:employees,email,' . $id,
+            'email' => 'required|email|unique:employees,email,'.$id,
         ]);
 
         $employee = Employee::findOrFail($id);
         $employee->update($validated);
+
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
@@ -82,6 +87,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $employee->delete();
+
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
 }
