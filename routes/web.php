@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route::get("/inventories", [InventoryController::class, "index"])->name("inventories.index");
+Route::get("/inventories/create", [InventoryController::class, "create"])->name("inventories.create");
+Route::post("/inventories", [InventoryController::class, "store"])->name("inventories.store");
+Route::get("/inventories/{id}", [InventoryController::class, "show"])->name("inventories.show");
+Route::get("/inventories/{id}/edit", [InventoryController::class, "edit"])->name("inventories.edit");
+Route::put("/inventories/{id}", [InventoryController::class, "update"])->name("inventories.update");
+Route::delete("/inventories/{id}", [InventoryController::class, "destroy"])->name("inventories.destroy");
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
