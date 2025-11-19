@@ -13,7 +13,8 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        return view("customers.index", compact('customers'));
+
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view("customers.create");
+        return view('customers.create');
     }
 
     /**
@@ -38,6 +39,7 @@ class CustomerController extends Controller
         $validated['is_active'] = $request->has('is_active');
 
         Customer::create($validated);
+
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
@@ -47,7 +49,8 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customer::findOrFail($id);
-        return view("customers.show", compact('customer'));
+
+        return view('customers.show', compact('customer'));
     }
 
     /**
@@ -56,7 +59,8 @@ class CustomerController extends Controller
     public function edit(string $id)
     {
         $customer = Customer::findOrFail($id);
-        return view("customers.edit", compact('customer'));
+
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -67,7 +71,7 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
-            'email' => 'required|email|unique:customers,email,' . $id,
+            'email' => 'required|email|unique:customers,email,'.$id,
             'phone_number' => 'nullable|string|max:15',
         ]);
         $validated['is_active'] = $request->has('is_active');
