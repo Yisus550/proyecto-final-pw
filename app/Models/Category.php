@@ -12,7 +12,7 @@ class Category extends Model
     public $timestamps = false;
 
     public $fillable = [
-        "name",
-        "description",
+        'name',
+        'description',
     ];
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Inventory;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -13,8 +13,9 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $inventories = Inventory::with("product")->get();
-        return view("inventories.index", compact("inventories"));
+        $inventories = Inventory::with('product')->get();
+
+        return view('inventories.index', compact('inventories'));
     }
 
     /**
@@ -23,9 +24,9 @@ class InventoryController extends Controller
     public function create()
     {
         $productsInfo = Product::all();
-        $products = $productsInfo->pluck("name", "id");
+        $products = $productsInfo->pluck('name', 'id');
 
-        return view("inventories.create", compact("products"));
+        return view('inventories.create', compact('products'));
     }
 
     /**
@@ -34,12 +35,13 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-             "product_id" => "required|integer|exists:products,id",
-             "stock_quantity" => "required|integer|min:0",
-         ]);
+            'product_id' => 'required|integer|exists:products,id',
+            'stock_quantity' => 'required|integer|min:0',
+        ]);
 
         Inventory::create($validated);
-        return redirect()->route("inventories.index")->with("success", "Inventory record created successfully.");
+
+        return redirect()->route('inventories.index')->with('success', 'Inventory record created successfully.');
     }
 
     /**
@@ -48,7 +50,8 @@ class InventoryController extends Controller
     public function show(string $id)
     {
         $inventory = Inventory::findOrFail($id);
-        return view("inventories.show", compact("inventory"));
+
+        return view('inventories.show', compact('inventory'));
     }
 
     /**
@@ -56,9 +59,9 @@ class InventoryController extends Controller
      */
     public function edit(string $id)
     {
-        $inventory = Inventory::findOrFail($id)::with("product")->first();
+        $inventory = Inventory::findOrFail($id)::with('product')->first();
 
-        return view("inventories.edit", compact("inventory"));
+        return view('inventories.edit', compact('inventory'));
     }
 
     /**
@@ -67,13 +70,13 @@ class InventoryController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-             "stock_quantity" => "required|integer|min:0",
-         ]);
+            'stock_quantity' => 'required|integer|min:0',
+        ]);
 
         $inventory = Inventory::findOrFail($id);
         $inventory->update($validated);
 
-        return redirect()->route("inventories.index")->with("success", "Inventory record updated successfully.");
+        return redirect()->route('inventories.index')->with('success', 'Inventory record updated successfully.');
     }
 
     /**
@@ -84,6 +87,6 @@ class InventoryController extends Controller
         $inventory = Inventory::findOrFail($id);
         $inventory->delete();
 
-        return redirect()->route("inventories.index")->with("success", "Inventory record deleted successfully.");
+        return redirect()->route('inventories.index')->with('success', 'Inventory record deleted successfully.');
     }
 }

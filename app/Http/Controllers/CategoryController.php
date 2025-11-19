@@ -13,7 +13,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view("categories.index", compact("categories"));
+
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("categories.create");
+        return view('categories.create');
     }
 
     /**
@@ -30,13 +31,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "name" => "required|string|max:60",
-            "description" => "nullable|string|max:255"
+            'name' => 'required|string|max:60',
+            'description' => 'nullable|string|max:255',
         ]);
 
         Category::create($validated);
 
-        return redirect()->route("categories.index")->with("success", "Category created successfully.");
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -47,7 +48,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         // Add logic to fetch related products
 
-        return view("categories.show", compact("category"));
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -56,7 +57,8 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return view("categories.edit", compact("category"));
+
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -65,14 +67,14 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "name" => "required|string|max:60",
-            "description" => "nullable|string|max:255"
+            'name' => 'required|string|max:60',
+            'description' => 'nullable|string|max:255',
         ]);
 
         $category = Category::findOrFail($id);
         $category->update($validated);
 
-        return redirect()->route("categories.index")->with("success", "Category updated successfully.");
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -83,6 +85,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route("categories.index")->with("success", "Category deleted successfully.");
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 }

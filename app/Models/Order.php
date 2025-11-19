@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Employee;
-use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,11 +12,11 @@ class Order extends Model
     public $timestamps = false;
 
     public $fillable = [
-        "employee_id",
-        "customer_id",
-        "order_date",
-        "total_amount",
-        "payment_method"
+        'employee_id',
+        'customer_id',
+        'order_date',
+        'total_amount',
+        'payment_method',
     ];
 
     public function employee()
