@@ -21,7 +21,7 @@
                 <label for="stock_quantity">Cantidad en Stock:</label>
                 <input type="number" name="stock_quantity" id="stock_quantity" min="0" value="{{ $inventory->stock_quantity }}" required>
             </div>
-            <button type="submit">Agregar al Inventario</button>
+            <button type="submit">Actualizar Inventario</button>
         </form>
         <a href="{{ route('inventories.show', $inventory->id) }}">Volver a Detalles</a>
     </body>
