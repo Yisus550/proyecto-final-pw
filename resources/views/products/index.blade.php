@@ -37,7 +37,7 @@
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('¿Estas seguro de eliminar este producto?')">Eliminar</button>
+                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>
