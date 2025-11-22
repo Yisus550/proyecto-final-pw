@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalles de Orden</title>
-</head>
+@section('title', 'Detalles de Orden')
 
-<body>
+@section('content')
     <h2>Detalles de Orden</h2>
 
-    <p><strong>Orden ID:</strong> {{ $orderDetail->order_id }}</p>
-    <p><strong>Producto:</strong> {{ $orderDetail->product->name }}</p>
-    <p><strong>Cantidad:</strong> {{ $orderDetail->quantity }}</p>
-    <p><strong>Precio por unidad:</strong> {{ $orderDetail->unit_price }}</p>
-    <p><strong>Total:</strong> {{ $orderDetail->total_price }}</p>
+    <div>
+        <p><strong>ID:</strong> {{ $orderDetail->id }}</p>
+        <p><strong>Orden ID:</strong> {{ $orderDetail->order_id }}</p>
+        <p><strong>Producto:</strong> {{ $orderDetail->product->name }}</p>
+        <p><strong>Cantidad:</strong> {{ $orderDetail->quantity }}</p>
+        <p><strong>Precio por unidad:</strong> ${{ number_format($orderDetail->unit_price, 2) }}</p>
+        <p><strong>Total:</strong> ${{ number_format($orderDetail->total_price, 2) }}</p>
+    </div>
 
-    <a href="{{ route('order-details.edit', $orderDetail->id) }}">Editar Detalle de Orden</a>
-    <a href="{{ route('order-details.index') }}">Volver a la lista de detalles de ordenes</a>
-</body>
-
-</html>
+    <div>
+        <a href="{{ route('order-details.edit', $orderDetail->id) }}">Editar Detalle de Orden</a>
+        <a href="{{ route('order-details.index') }}">Volver a la lista de detalles de ordenes</a>
+    </div>
+@endsection
