@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalles de Categoria</title>
-</head>
+@section('title', 'Detalles de Categoría')
 
-<body>
+@section('content')
     <h2>Detalles de {{ $category->name }}</h2>
     <div>
         <strong>ID:</strong>
@@ -26,6 +21,4 @@
         <a href="{{ route('categories.edit', $category->id) }}">Editar Categoria</a>
         <a href="{{ route('categories.index') }}">Volver a la lista de categorias</a>
     </div>
-</body>
-
-</html>
+@endsection

@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalles de Producto</title>
-</head>
+@section('title', 'Detalles de Producto')
 
-<body>
+@section('content')
     <h2>Detalles de {{ $product->name }}</h2>
 
-    <a href="{{ route('products.index') }}">Volver a la lista de productos</a>
-    <p><strong>Nombre:</strong> {{ $product->name }}</p>
-    <p><strong>Categoria:</strong> {{ $product->category->name }}</p>
-    <p><strong>Precio por unidad:</strong> {{ $product->unit_price }}</p>
-    <p><strong>Activo:</strong> {{ $product->is_active ? 'Disponible' : 'No disponible' }}</p>
-    <a href="{{ route('products.edit', $product->id) }}">Editar Producto</a>
-</body>
+    <div>
+        <p><strong>ID:</strong> {{ $product->id }}</p>
+        <p><strong>Nombre:</strong> {{ $product->name }}</p>
+        <p><strong>Categoria:</strong> {{ $product->category->name }}</p>
+        <p><strong>Precio por unidad:</strong> {{ $product->unit_price }}</p>
+        <p><strong>Activo:</strong> {{ $product->is_active ? 'Disponible' : 'No disponible' }}</p>
+    </div>
 
-</html>
+    <div>
+        <a href="{{ route('products.edit', $product->id) }}">Editar Producto</a>
+        <a href="{{ route('products.index') }}">Volver a la lista de productos</a>
+    </div>
+@endsection
