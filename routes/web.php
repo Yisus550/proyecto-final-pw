@@ -29,42 +29,12 @@ Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/inventories', [InventoryController::class, 'index'])->name('inventories.index');
-Route::get('/inventories/create', [InventoryController::class, 'create'])->name('inventories.create');
-Route::post('/inventories', [InventoryController::class, 'store'])->name('inventories.store');
-Route::get('/inventories/{id}', [InventoryController::class, 'show'])->name('inventories.show');
-Route::get('/inventories/{id}/edit', [InventoryController::class, 'edit'])->name('inventories.edit');
-Route::put('/inventories/{id}', [InventoryController::class, 'update'])->name('inventories.update');
-Route::delete('/inventories/{id}', [InventoryController::class, 'destroy'])->name('inventories.destroy');
+Route::resource('inventories', InventoryController::class)->parameters(['inventories' => 'id']);
 
-Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
-Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
-Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
-Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employees.show');
-Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
-Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('employees.update');
-Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+Route::resource('employees', EmployeeController::class)->parameters(['employees' => 'id']);
 
-Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
-Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
-Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-Route::get('/customers/{id}', [CustomerController::class, 'show'])->name('customers.show');
-Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('customers.update');
-Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id']);
 
-Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
-Route::get('/orders/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
-Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
-Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+Route::resource('orders', OrderController::class)->parameters(['orders' => 'id']);
 
-Route::get('/order-details', [OrderDetailsController::class, 'index'])->name('order-details.index');
-Route::get('/order-details/create', [OrderDetailsController::class, 'create'])->name('order-details.create');
-Route::post('/order-details', [OrderDetailsController::class, 'store'])->name('order-details.store');
-Route::get('/order-details/{id}', [OrderDetailsController::class, 'show'])->name('order-details.show');
-Route::get('/order-details/{id}/edit', [OrderDetailsController::class, 'edit'])->name('order-details.edit');
-Route::put('/order-details/{id}', [OrderDetailsController::class, 'update'])->name('order-details.update');
-Route::delete('/order-details/{id}', [OrderDetailsController::class, 'destroy'])->name('order-details.destroy');
+Route::resource('order-details', OrderDetailsController::class)->parameters(['order-details' => 'id']);
