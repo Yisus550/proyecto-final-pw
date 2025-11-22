@@ -54,7 +54,6 @@ return new class extends Migration
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            // TODO: Add employee_id and customer_id foreign keys when those tables are created
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->dateTime('order_date');
