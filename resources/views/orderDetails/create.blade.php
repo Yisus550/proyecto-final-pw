@@ -25,7 +25,7 @@
         <div>
             <label for="product_id">Producto ID:</label>
             <select id="product_id" name="product_id" required>
-                <option value="" disabled>--- Seleccione un producto ---</option>
+                <option value="" disabled selected>--- Seleccione un producto ---</option>
                 @foreach ($products as $product_id => $product_name)
                     <option value="{{ $product_id }}">{{ $product_name }}</option>
                 @endforeach
