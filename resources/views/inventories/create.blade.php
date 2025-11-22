@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Agergar a Inventario</title>
+        <title>Agregar a Inventario</title>
     </head>
     <body>
         <h2>Agregar Producto al Inventario</h2>
