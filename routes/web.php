@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,3 +60,11 @@ Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show'
 Route::get('/orders/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
 Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+Route::get('/order-details', [OrderDetailsController::class, 'index'])->name('order-details.index');
+Route::get('/order-details/create', [OrderDetailsController::class, 'create'])->name('order-details.create');
+Route::post('/order-details', [OrderDetailsController::class, 'store'])->name('order-details.store');
+Route::get('/order-details/{id}', [OrderDetailsController::class, 'show'])->name('order-details.show');
+Route::get('/order-details/{id}/edit', [OrderDetailsController::class, 'edit'])->name('order-details.edit');
+Route::put('/order-details/{id}', [OrderDetailsController::class, 'update'])->name('order-details.update');
+Route::delete('/order-details/{id}', [OrderDetailsController::class, 'destroy'])->name('order-details.destroy');
