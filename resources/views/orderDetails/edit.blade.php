@@ -18,7 +18,7 @@
             <label for="order_id">Orden ID:</label>
             <select id="order_id" name="order_id" required>
                 @foreach ($orders as $order)
-                    <option value="{{ $order }} @selected($orderDetail->order_id == $order)">{{ $order }}</option>
+                    <option value="{{ $order }}" @selected($orderDetail->order_id == $order)>{{ $order }}</option>
                 @endforeach
             </select>
         </div>
