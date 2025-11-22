@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar Producto</title>
-</head>
+@section('title', 'Editar Producto')
 
-<body>
+@section('content')
     <h2>Editar Producto</h2>
 
-    <a href="{{ route('products.index') }}">Volver a la lista de productos</a>
     <form action="{{ route('products.update', $product->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -38,6 +32,5 @@
         <button type="submit">Guardar producto</button>
     </form>
 
-</body>
-
-</html>
+    <a href="{{ route('products.index') }}">Volver a la lista de productos</a>
+@endsection

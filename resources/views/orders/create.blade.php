@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crear un Nueva Orden</title>
-</head>
+@section('title', 'Crear Nueva Orden')
 
-<body>
+@section('content')
     <h2>Crear una Nueva Orden</h2>
 
     <form action="{{ route('orders.store') }}" method="POST">
@@ -52,6 +47,4 @@
     </form>
 
     <a href="{{ route('orders.index') }}">Volver a la Lista de Ordenes</a>
-</body>
-
-</html>
+@endsection

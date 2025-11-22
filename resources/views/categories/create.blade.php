@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Category</title>
-</head>
+@section('title', 'Crear Nueva Categoría')
 
-<body>
+@section('content')
     <h2>Crear Nueva Categoría</h2>
 
     <form action="{{ route('categories.store') }}" method="POST">
@@ -22,6 +17,4 @@
         </div>
         <button type="submit">Crear Categoría</button>
     </form>
-</body>
-
-</html>
+@endsection

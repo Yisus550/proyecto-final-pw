@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Productos</title>
-</head>
+@section('title', 'Lista de Productos')
 
-<body>
+@section('content')
     <h2>Productos</h2>
 
     <a href="{{ route('products.create') }}">Crear un nuevo producto</a>
@@ -34,10 +29,11 @@
                         <td>
                             <a href="{{ route('products.show', $product->id) }}">Ver detalles</a>
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                                style="display:inline;">
+                                style="display:inline;"
+                                onsubmit="return confirm('¿Estás seguro de eliminar este producto?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                                <button type="submit">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -45,6 +41,4 @@
             </tbody>
         </table>
     @endif
-</body>
-
-</html>
+@endsection

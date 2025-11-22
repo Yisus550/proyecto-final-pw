@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Category</title>
-</head>
+@section('title', 'Editar Categoría')
 
-<body>
+@section('content')
     <h2>Editar Categoría</h2>
 
     <form action="{{ route('categories.update', $category->id) }}" method="POST">
@@ -28,6 +23,4 @@
     </form>
 
     <a href="{{ route('categories.index') }}">Volver a la lista de categorías</a>
-</body>
-
-</html>
+@endsection

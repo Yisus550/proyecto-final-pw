@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Agregar un producto</title>
-</head>
+@section('title', 'Agregar Producto')
 
-<body>
+@section('content')
     <h2>Agregar un nuevo producto</h2>
 
     <form action="{{ route('products.store') }}" method="POST">
@@ -36,6 +31,4 @@
     </form>
 
     <a href="{{ route('products.index') }}">Volver a la lista de productos</a>
-</body>
-
-</html>
+@endsection
