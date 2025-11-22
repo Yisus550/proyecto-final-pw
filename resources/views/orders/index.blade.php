@@ -40,7 +40,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    onclick="return confirm('Estas seguro de eliminar esta ordern?')">Eliminar</button>
+                                    onclick="return confirm('¿Estás seguro de eliminar esta orden?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>
