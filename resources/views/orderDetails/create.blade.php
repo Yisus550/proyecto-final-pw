@@ -15,7 +15,7 @@
         <div>
             <label for="order_id">Orden ID:</label>
             <select id="order_id" name="order_id" required>
-                <option value="" disabled>--- Seleccione una orden ---</option>
+                <option value="" disabled selected>--- Seleccione una orden ---</option>
                 @foreach ($orders as $order)
                     <option value="{{ $order }}">{{ $order }}</option>
                 @endforeach
