@@ -33,7 +33,7 @@
 
             <div>
                 <label for="is_active">Activo:</label>
-                <input type="checkbox" id="is_active" name="is_active">
+                <input type="checkbox" id="is_active" name="is_active" @checked($customer->is_active)>
             </div>
 
             <button type="submit">Guardar Cliente</button>
