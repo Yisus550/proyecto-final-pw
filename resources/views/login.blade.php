@@ -12,7 +12,7 @@
         <h2>Iniciar Sesión en POS</h1>
             @error('email')
                 <div style="color: red;">
-                    {{ session('error') }}
+                    {{ $message }}
                 </div>
             @enderror
 
