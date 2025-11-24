@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/login', 'login')->name('login');
 Route::post('/login', [EmployeeController::class, 'login'])->name('login.attempt');
-Route::get('/logout', [EmployeeController::class, 'logout'])->name('logout');
+Route::post('/logout', [EmployeeController::class, 'logout'])->name('logout');
 
 Route::middleware('auth:employee')->group(function () {
     Route::get('/', function () {
