@@ -8,11 +8,11 @@
 </head>
 
 <body>
-    <div>
-        <h2>Iniciar Sesión en POS</h1>
+    <main>
+        <h2>Iniciar Sesión en POS</h2>
             @error('email')
-                <div style="color: red;">
-                    {{ session('error') }}
+                <div id="email-error" role="alert" aria-live="polite" style="color: red;">
+                    {{ $message }}
                 </div>
             @enderror
 
@@ -20,7 +20,7 @@
                 @csrf
                 <div>
                     <label for="email">Correo electronico:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required autofocus @error('email') aria-describedby="email-error" aria-invalid="true" @enderror>
                 </div>
                 <div>
                     <label for="password">Contraseña:</label>
@@ -36,7 +36,7 @@
                     <button type="submit">Iniciar Sesión</button>
                 </div>
             </form>
-    </div>
+    </main>
 </body>
 
 </html>

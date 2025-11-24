@@ -20,4 +20,10 @@ class Employee extends Authenticatable
         'password',
         'is_active',
     ];
+
+    protected $hidden = ['password'];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
 }
