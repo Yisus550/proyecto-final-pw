@@ -16,7 +16,7 @@ class ProductController extends Controller
         $products = Product::with('category')->get();
 
         $recentlyViewedIds = json_decode(request()->cookie('recently_viewed_products', '[]'), true);
-        $recentlyViewed = Product::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, ' . implode(',', $recentlyViewedIds ?: [0]) . ')')->take(5)->get();
+        $recentlyViewed = Product::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, '.implode(',', $recentlyViewedIds ?: [0]).')')->take(5)->get();
 
         return view('products.index', compact('products', 'recentlyViewed'));
     }

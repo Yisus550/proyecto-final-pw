@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         $recentlyViewedIds = json_decode(request()->cookie('recently_viewed_categories', '[]'), true);
-        $recentlyViewed = Category::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, ' . implode(',', $recentlyViewedIds ?: [0]) . ')')->take(5)->get();
+        $recentlyViewed = Category::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, '.implode(',', $recentlyViewedIds ?: [0]).')')->take(5)->get();
 
         return view('categories.index', compact('categories', 'recentlyViewed'));
     }
