@@ -29,7 +29,7 @@ class EmployeeController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('employee')->logout();
 
         $request->session()->invalidate();
 
