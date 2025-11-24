@@ -36,5 +36,12 @@
                 @endforeach
             </tbody>
         </table>
+
+        <h3>Categorías vistas recientemente</h3>
+        <div>
+            @foreach ($recentlyViewed as $item)
+                <p>- {{ $item->name }}</p>
+            @endforeach
+        </div>
     @endif
 @endsection
