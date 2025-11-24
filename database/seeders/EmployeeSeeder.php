@@ -16,6 +16,11 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
+        // WARNING: DO NOT USE THIS SEEDER IN PRODUCTION!
+        // This seeder uses hardcoded weak passwords ('password123') for demonstration purposes only.
+        // Running this seeder in a production environment poses a serious security risk.
+        // Always use strong, randomly generated passwords in production environments.
+
         $employees = [
             ['first_name' => 'Juan', 'last_name' => 'Pérez', 'role' => 'Gerente', 'email' => 'juan@example.com', 'password' => Hash::make('password123'), 'is_active' => true],
             ['first_name' => 'María', 'last_name' => 'García', 'role' => 'Vendedor', 'email' => 'maria@example.com', 'password' => Hash::make('password123'), 'is_active' => true],
