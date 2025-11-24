@@ -11,8 +11,8 @@
     <main>
         <h2>Iniciar Sesión en POS</h2>
             @error('email')
-                <div id="email-error" role="alert" aria-live="polite" style="color: red;">
-                    {{ session('error') }}
+                <div style="color: red;">
+                    {{ $message }}
                 </div>
             @enderror
 
