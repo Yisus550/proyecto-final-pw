@@ -15,7 +15,10 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
 
-        return view('products.index', compact('products'));
+        $recentlyViewedIds = json_decode(request()->cookie('recently_viewed_products', '[]'), true);
+        $recentlyViewed = Product::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, ' . implode(',', $recentlyViewedIds ?: [0]) . ')')->take(5)->get();
+
+        return view('products.index', compact('products', 'recentlyViewed'));
     }
 
     /**
@@ -53,7 +56,13 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('products.show', compact('product'));
+        $recentlyViewed = json_decode(request()->cookie('recently_viewed_products', '[]'), true);
+
+        $recentlyViewed = array_filter($recentlyViewed, fn ($product_id) => $product_id != $id);
+        array_unshift($recentlyViewed, $id);
+        $recentlyViewed = array_slice($recentlyViewed, 0, 5);
+
+        return response()->view('products.show', compact('product'))->cookie('recently_viewed_products', json_encode($recentlyViewed), 7 * 24 * 60);
     }
 
     /**
