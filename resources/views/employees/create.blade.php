@@ -3,37 +3,71 @@
 @section('title', 'Agregar Nuevo Empleado')
 
 @section('content')
-    <h2>Agregar un Nuevo Empleado</h2>
-
-    <form action="{{ route('employees.store') }}" method="POST">
-        @csrf
-        <div>
-            <label for="first_name">Nombre:</label>
-            <input type="text" id="first_name" name="first_name" required>
+    <div class="max-w-2xl mx-auto">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-dark-text mb-2">Agregar un Nuevo Empleado</h2>
         </div>
 
-        <div>
-            <label for="last_name">Apellido:</label>
-            <input type="text" id="last_name" name="last_name" required>
+        <div class="bg-dark-card border border-dark-border rounded-lg p-8">
+            <form action="{{ route('employees.store') }}" method="POST" class="space-y-6">
+                @csrf
+                
+                <div>
+                    <label for="first_name" class="block text-sm font-medium text-dark-text mb-2">Nombre:</label>
+                    <input type="text" 
+                           id="first_name" 
+                           name="first_name" 
+                           required
+                           class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-dark-text placeholder-dark-text-muted focus:outline-none focus:ring-2 focus:ring-laravel-red focus:border-transparent transition duration-200">
+                </div>
+
+                <div>
+                    <label for="last_name" class="block text-sm font-medium text-dark-text mb-2">Apellido:</label>
+                    <input type="text" 
+                           id="last_name" 
+                           name="last_name" 
+                           required
+                           class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-dark-text placeholder-dark-text-muted focus:outline-none focus:ring-2 focus:ring-laravel-red focus:border-transparent transition duration-200">
+                </div>
+
+                <div>
+                    <label for="role" class="block text-sm font-medium text-dark-text mb-2">Role:</label>
+                    <input type="text" 
+                           id="role" 
+                           name="role" 
+                           required
+                           class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-dark-text placeholder-dark-text-muted focus:outline-none focus:ring-2 focus:ring-laravel-red focus:border-transparent transition duration-200">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-dark-text mb-2">Correo Electrónico:</label>
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           required
+                           class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-dark-text placeholder-dark-text-muted focus:outline-none focus:ring-2 focus:ring-laravel-red focus:border-transparent transition duration-200">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-dark-text mb-2">Contraseña:</label>
+                    <input type="password" 
+                           id="password" 
+                           name="password" 
+                           placeholder="********"
+                           class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-dark-text placeholder-dark-text-muted focus:outline-none focus:ring-2 focus:ring-laravel-red focus:border-transparent transition duration-200">
+                </div>
+
+                <div class="flex items-center justify-between pt-4">
+                    <a href="{{ route('employees.index') }}" 
+                       class="text-dark-text-muted hover:text-dark-text transition duration-150">
+                        ← Volver a la Lista de Empleados
+                    </a>
+                    <button type="submit" 
+                            class="bg-laravel-red hover:bg-laravel-red-dark text-white font-semibold px-6 py-3 rounded-lg transition duration-200">
+                        Guardar Empleado
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <div>
-            <label for="role">Role:</label>
-            <input type="text" id="role" name="role" required>
-        </div>
-
-        <div>
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
-        <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" placeholder="********">
-        </div>
-
-        <button type="submit">Guardar Empleado</button>
-    </form>
-
-    <a href="{{ route('employees.index') }}">Volver a la Lista de Empleados</a>
+    </div>
 @endsection
