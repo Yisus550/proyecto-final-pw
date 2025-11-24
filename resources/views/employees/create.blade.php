@@ -27,6 +27,11 @@
             <input type="email" id="email" name="email" required>
         </div>
 
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" placeholder="********">
+        </div>
+
         <button type="submit">Guardar Empleado</button>
     </form>
 
