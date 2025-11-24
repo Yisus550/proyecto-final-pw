@@ -14,7 +14,10 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('categories.index', compact('categories'));
+        $recentlyViewedIds = json_decode(request()->cookie('recently_viewed_categories', '[]'), true);
+        $recentlyViewed = Category::whereIn('id', $recentlyViewedIds)->orderByRaw('FIELD(id, ' . implode(',', $recentlyViewedIds ?: [0]) . ')')->take(5)->get();
+
+        return view('categories.index', compact('categories', 'recentlyViewed'));
     }
 
     /**
@@ -46,9 +49,13 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
-        // Add logic to fetch related products
 
-        return view('categories.show', compact('category'));
+        $recentlyViewed = json_decode(request()->cookie('recently_viewed_categories', '[]'), true);
+        $recentlyViewed = array_filter($recentlyViewed, fn ($category_id) => $category_id != $id);
+        array_unshift($recentlyViewed, $id);
+        $recentlyViewed = array_slice($recentlyViewed, 0, 5);
+
+        return response()->view('categories.show', compact('category'))->cookie('recently_viewed_categories', json_encode($recentlyViewed), 7 * 24 * 60);
     }
 
     /**
