@@ -29,6 +29,12 @@
             <input type="email" id="email" name="email" value="{{ $employee->email }}" required>
         </div>
 
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="********">
+            <small>Dejar en blanco para mantener la contraseña actual.</small>
+        </div>
+
         <button type="submit">Actualizar Empleado</button>
     </form>
 

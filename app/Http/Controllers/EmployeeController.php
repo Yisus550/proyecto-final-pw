@@ -4,9 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+        /* $remember = request()->has('remember'); */
+
+        if (Auth::guard('employee')->attempt($credentials/* , $remember */)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/categories');
+        }
+
+        return back()->withErrors([
+            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('employee')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,7 +67,9 @@ class EmployeeController extends Controller
             'last_name' => 'required|string|max:255',
             'role' => 'required|string|max:60',
             'email' => 'required|email|unique:employees,email',
+            'password' => 'required|string',
         ]);
+        $validated['password'] = Hash::make($validated['password']);
 
         Employee::create($validated);
 
@@ -72,7 +106,13 @@ class EmployeeController extends Controller
             'last_name' => 'required|string|max:255',
             'role' => 'required|string|max:60',
             'email' => 'required|email|unique:employees,email,'.$id,
+            'password' => 'nullable|string',
         ]);
+        if (!empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
 
         $employee = Employee::findOrFail($id);
         $employee->update($validated);
