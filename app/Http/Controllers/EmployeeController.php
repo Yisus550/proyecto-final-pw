@@ -18,6 +18,7 @@ class EmployeeController extends Controller
 
         if (Auth::guard('employee')->attempt($credentials/* , $remember */)) {
             $request->session()->regenerate();
+
             return redirect()->intended('/categories');
         }
 
