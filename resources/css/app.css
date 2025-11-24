@@ -8,4 +8,15 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    /* Laravel Dark Theme Colors */
+    --color-dark-bg: #0a0a0a;
+    --color-dark-card: #161616;
+    --color-dark-hover: #1f1f1f;
+    --color-dark-border: #2a2a2a;
+    --color-dark-text: #e5e5e5;
+    --color-dark-text-muted: #a1a1a1;
+    --color-laravel-red: #ff2d20;
+    --color-laravel-red-dark: #e12513;
+    --color-laravel-red-light: #ff483a;
 }
